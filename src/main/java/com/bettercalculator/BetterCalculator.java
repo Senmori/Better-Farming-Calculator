@@ -1,4 +1,4 @@
-package com.example;
+package com.bettercalculator;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -14,15 +14,20 @@ import net.runelite.client.plugins.PluginDescriptor;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Example"
+	name = BetterCalculator.PLUGIN_NAME,
+	description = "Helps plan out your XP gains better"
 )
-public class ExamplePlugin extends Plugin
+public class BetterCalculator extends Plugin
 {
+	public static final String PLUGIN_NAME = "Better XP Calculator";
+	public static final String PROJECT_NAME = "better-calculator";
+	public static final String CONFIG_GROUP = "betterCalc";
+
 	@Inject
 	private Client client;
 
 	@Inject
-	private ExampleConfig config;
+	private BetterCalculatorConfig config;
 
 	@Override
 	protected void startUp() throws Exception
@@ -46,8 +51,8 @@ public class ExamplePlugin extends Plugin
 	}
 
 	@Provides
-	ExampleConfig provideConfig(ConfigManager configManager)
+	BetterCalculatorConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(ExampleConfig.class);
+		return configManager.getConfig(BetterCalculatorConfig.class);
 	}
 }
