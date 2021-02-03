@@ -20,7 +20,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 public class BetterCalculator extends Plugin
 {
 	public static final String PLUGIN_NAME = "Better XP Calculator";
-	public static final String PROJECT_NAME = "better-calculator";
 	public static final String CONFIG_GROUP = "betterCalc";
 
 	@Inject
