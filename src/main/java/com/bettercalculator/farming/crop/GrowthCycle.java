@@ -10,7 +10,9 @@ import lombok.Value;
  * and <br>
  * The number of cycles needed for the {@link Crop} to be fully grown.
  */
-@Value
+@Value(
+	staticConstructor = "of"
+)
 public class GrowthCycle
 {
 	/** How long each growth cycle is. */

@@ -24,7 +24,7 @@ public final class EmptyCrop implements Crop
 	@Override
 	public GrowthCycle getGrowthCycle()
 	{
-		return new GrowthCycle(1, Integer.MAX_VALUE);
+		return GrowthCycle.of(Integer.MAX_VALUE, 1);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public final class EmptyCrop implements Crop
 	@Override
 	public Collection<Harvest> getHarvest()
 	{
-		return ImmutableList.of(new Harvest(-1, 0));
+		return ImmutableList.of(Harvest.builder().itemID(-1).quantity(0).build());
 	}
 
 	@Override

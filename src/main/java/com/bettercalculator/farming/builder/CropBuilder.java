@@ -7,6 +7,8 @@ import com.bettercalculator.farming.crop.FarmingCrop;
 import com.bettercalculator.farming.crop.GrowthCycle;
 import com.bettercalculator.farming.crop.Harvest;
 import com.bettercalculator.farming.crop.Seed;
+import com.bettercalculator.farming.util.GrowthTiming;
+import com.bettercalculator.farming.util.SeedType;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
@@ -43,36 +45,21 @@ public class CropBuilder
 	public interface SeedBuilder {
 		GrowthCycleBuilder seed(Seed seed);
 
-		GrowthCycleBuilder seed(int itemID, int requiredFarmingLevel);
+		GrowthCycleBuilder seed(SeedType seedType);
 	}
 
 	public interface GrowthCycleBuilder {
 		CropExperienceBuilder growthCycle(GrowthCycle growthCycle);
 
-		CropExperienceBuilder growthCycle(int numberofGrowthCycles, int growthCycleLength);
+		CropExperienceBuilder growthCycle(GrowthTiming growthTiming, int numberofGrowthCycles);
 	}
 
 	public interface CropExperienceBuilder {
-		HarvestBuilder cropExperience(CropExperience cropExperience);
+		BuildStep cropExperience(CropExperience cropExperience);
 
-		HarvestBuilder cropExperience(int plantingExperience, int harvestExperience);
+		BuildStep cropExperience(int plantingExperience, int harvestExperience);
 
-		HarvestBuilder cropExperience(int plantingExperience, int harvestExperience, int defaultYield);
-	}
-
-	public interface HarvestBuilder {
-
-		HarvestBuilder harvest(Harvest harvest);
-
-		HarvestBuilder harvest(int itemID, int quantity);
-
-		HarvestBuilder harvest(int itemID, int minimumHarvest, int maximumHarvest);
-
-		DiseaseBuilder noMoreHarvests();
-	}
-
-	public interface DiseaseBuilder {
-		BuildStep diseaseChance(double diseaseChance);
+		BuildStep cropExperience(int plantingExperience, int harvestExperience, int defaultYield);
 	}
 
 	public interface BuildStep {
@@ -80,7 +67,7 @@ public class CropBuilder
 	}
 
 	@Getter
-	public static class Builder implements CropTypeBuilder, SeedBuilder, GrowthCycleBuilder, CropExperienceBuilder, HarvestBuilder, DiseaseBuilder, BuildStep
+	public static class Builder implements CropTypeBuilder, SeedBuilder, GrowthCycleBuilder, CropExperienceBuilder, BuildStep
 	{
 		private CropType cropType;
 		private Seed seed;
@@ -106,9 +93,9 @@ public class CropBuilder
 		}
 
 		@Override
-		public GrowthCycleBuilder seed(int itemID, int requiredFarmingLevel)
+		public GrowthCycleBuilder seed(SeedType seedType)
 		{
-			this.seed = new Seed(itemID, requiredFarmingLevel);
+			this.seed = new Seed(seedType.getItemID(), seedType.getRequiredFarmingLevel());
 			return this;
 		}
 
@@ -120,21 +107,21 @@ public class CropBuilder
 		}
 
 		@Override
-		public CropExperienceBuilder growthCycle(int numberofGrowthCycles, int growthCycleLength)
+		public CropExperienceBuilder growthCycle(GrowthTiming growthTiming, int numberofGrowthCycles)
 		{
-			this.growthCycle = new GrowthCycle(growthCycleLength, numberofGrowthCycles);
+			this.growthCycle = GrowthCycle.of(growthTiming.getLength(), numberofGrowthCycles);
 			return this;
 		}
 
 		@Override
-		public HarvestBuilder cropExperience(CropExperience cropExperience)
+		public BuildStep cropExperience(CropExperience cropExperience)
 		{
 			this.cropExperience = cropExperience;
 			return this;
 		}
 
 		@Override
-		public HarvestBuilder cropExperience(int plantingExperience, int harvestExperience)
+		public BuildStep cropExperience(int plantingExperience, int harvestExperience)
 		{
 			this.cropExperience = CropExperience.builder()
 				.plantingExperience(plantingExperience)
@@ -144,55 +131,13 @@ public class CropBuilder
 		}
 
 		@Override
-		public HarvestBuilder cropExperience(int plantingExperience, int harvestExperience, int defaultYield)
+		public BuildStep cropExperience(int plantingExperience, int harvestExperience, int defaultYield)
 		{
 			this.cropExperience = CropExperience.builder()
 				.plantingExperience(plantingExperience)
 				.harvestExperience(harvestExperience)
 				.defaultYield(defaultYield)
 				.build();
-			return this;
-		}
-
-		@Override
-		public HarvestBuilder harvest(Harvest harvest)
-		{
-			this.harvestList.add(harvest);
-			return this;
-		}
-
-		@Override
-		public HarvestBuilder harvest(int itemID, int quantity)
-		{
-			Harvest harvest = Harvest.builder()
-				.itemID(itemID)
-				.quantity(quantity)
-				.build();
-			return this.harvest(harvest);
-		}
-
-		@Override
-		public HarvestBuilder harvest(int itemID, int minimumHarvest, int maximumHarvest)
-		{
-			Harvest harvest = Harvest.builder()
-				.itemID(itemID)
-				.minimumHarvest(minimumHarvest)
-				.maximumHarvest(maximumHarvest)
-				.isVariableHarvest(true)
-				.build();
-			return this.harvest(harvest);
-		}
-
-		@Override
-		public DiseaseBuilder noMoreHarvests()
-		{
-			return this;
-		}
-
-		@Override
-		public BuildStep diseaseChance(double diseaseChance)
-		{
-			this.diseaseChance = diseaseChance;
 			return this;
 		}
 

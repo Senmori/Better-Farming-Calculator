@@ -25,12 +25,4 @@ public class Harvest
 	/** The maximum amount of items that can be harvested. */
 	@Builder.Default
 	int maximumHarvest = 0;
-
-	public Harvest(int itemID, int quantity)
-	{
-		this.itemID = itemID;
-		this.quantity = quantity;
-		this.isVariableHarvest = false;
-		this.minimumHarvest = maximumHarvest = quantity;
-	}
 }
