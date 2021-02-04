@@ -18,7 +18,8 @@ public class CropExperience
 	 * The default (lowest) number of items that can be harvested if this item has a variable yield.
 	 * If this crop has no variable yield, this is the number of items harvested.
 	 */
-	int defaultYield;
+	@Builder.Default
+	int defaultYield = 1;
 
 
 	/**
