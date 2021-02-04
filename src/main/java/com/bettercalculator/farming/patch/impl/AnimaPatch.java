@@ -5,7 +5,7 @@ import com.bettercalculator.farming.patch.AbstractPatch;
 
 public class AnimaPatch extends AbstractPatch
 {
-	protected AnimaPatch()
+	public AnimaPatch()
 	{
 		super(CropType.ANIMA);
 	}

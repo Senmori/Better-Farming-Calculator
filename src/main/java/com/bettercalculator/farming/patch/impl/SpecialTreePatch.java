@@ -5,7 +5,7 @@ import com.bettercalculator.farming.patch.AbstractPatch;
 
 public class SpecialTreePatch extends AbstractPatch
 {
-	protected SpecialTreePatch()
+	public SpecialTreePatch()
 	{
 		super(CropType.SPECIAL_TREE);
 	}

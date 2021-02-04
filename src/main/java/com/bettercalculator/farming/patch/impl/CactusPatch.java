@@ -5,7 +5,7 @@ import com.bettercalculator.farming.patch.AbstractPatch;
 
 public class CactusPatch extends AbstractPatch
 {
-	protected CactusPatch()
+	public CactusPatch()
 	{
 		super(CropType.CACTUS);
 	}

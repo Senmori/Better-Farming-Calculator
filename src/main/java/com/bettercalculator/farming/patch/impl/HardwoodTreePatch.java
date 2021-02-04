@@ -5,7 +5,7 @@ import com.bettercalculator.farming.patch.AbstractPatch;
 
 public class HardwoodTreePatch extends AbstractPatch
 {
-	protected HardwoodTreePatch()
+	public HardwoodTreePatch()
 	{
 		super(CropType.HARDWOOD_TREE);
 	}
