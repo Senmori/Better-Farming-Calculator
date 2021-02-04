@@ -7,7 +7,7 @@ import java.util.Collection;
  * Represents an empty farming crop which rewards no experience nor harvest.
  * This is used to indicate nothing is planted in a farming patch.
  */
-public class EmptyCrop implements Crop
+public final class EmptyCrop implements Crop
 {
 	@Override
 	public CropType getCropType()
@@ -43,5 +43,14 @@ public class EmptyCrop implements Crop
 	public double getStandardDiseaseChance()
 	{
 		return 0.0D;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj == null) return false;
+		if (!(obj instanceof EmptyCrop)) return false;
+		EmptyCrop crop = (EmptyCrop) obj;
+		return crop.getClass() == EmptyCrop.class;
 	}
 }

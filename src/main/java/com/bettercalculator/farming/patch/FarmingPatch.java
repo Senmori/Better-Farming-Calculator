@@ -58,4 +58,16 @@ public interface FarmingPatch
 	 * @return true if this {@link Crop} is diseased. Crops do not advance growth stages if they are diseased.
 	 */
 	boolean isCropDiseased();
+
+	/**
+	 * Set that this crop is diseased.
+	 *
+	 * @param diseased true to make this crop be diseased
+	 */
+	void setDiseased(boolean diseased);
+
+	/**
+	 * @return the chance this {@link Crop} will become diseased if no outside influences occur.
+	 */
+	double getDiseaseChance();
 }

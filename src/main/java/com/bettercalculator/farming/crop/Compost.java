@@ -18,8 +18,8 @@ public enum Compost
 	ULTRACOMPOST(0.9, 36),
 	/** Fertile Soil spell that acts as ultracompost. */
 	FERTILE_SOIL_ULTRACOMPOST(ULTRACOMPOST.getDiseaseReductionRate(), 18),
-	/** No compost. */
-	NONE(0.0D, 0),
+	/** No compost. This does not reduce disease chance. Therefore, the disease reduction rate is 1.0D. */
+	NONE(1.0D, 0),
 	;
 
 	/** Get how much this compost reduces a crop's disease rate each growth cycle. */

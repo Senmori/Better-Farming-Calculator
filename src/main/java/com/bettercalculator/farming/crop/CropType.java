@@ -44,4 +44,9 @@ public enum CropType
 	{
 		return crop.getCropType() == this;
 	}
+
+	public static EmptyCrop getEmptyCrop()
+	{
+		return new EmptyCrop();
+	}
 }
