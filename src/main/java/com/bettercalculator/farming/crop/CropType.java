@@ -10,25 +10,25 @@ public enum CropType
 {
 	/** Crops grown in an allotment patch*/
 	ALLOTMENT,
-	/** Crops grown in a flower patch. This includes scarecrows. */
-	FLOWER,
-	/** Crops grown in a Herb patch. */
-	HERB,
 	/** Crosp grown in a Hops patch. */
 	HOPS,
-	/** Crops grown in a Bush patch. */
-	BUSH,
 	/** Crops grown in a Tree patch. */
 	TREE,
 	/** Crops grown in a Fruit Tree patch. */
 	FRUIT_TREE,
+	/** Crops grown in a Bush patch. */
+	BUSH,
+	/** Crops grown in a flower patch. This includes scarecrows. */
+	FLOWER,
+	/** Crops grown in a Herb patch. */
+	HERB,
 	/** Crops grown in a Hardwood Tree patch. */
 	HARDWOOD_TREE,
 	/** Trees that don't fit the other categories but have their own respective patch. */
 	SPECIAL_TREE,
 	/** Crops grown in an Anima patch. */
 	ANIMA,
-	/** Crops grown in a catus patch. */
+	/** Crops grown in a cactus patch. */
 	CACTUS,
 	/**
 	 * Crops that don't fit any other category but have their own respective patches.
