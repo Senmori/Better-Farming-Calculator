@@ -82,6 +82,6 @@ public class AbstractPatch implements FarmingPatch
 	@Override
 	public double getDiseaseChance()
 	{
-		return getCurrentCrop().getStandardDiseaseChance() * getCompostUsed().getDiseaseReductionRate();
+		return getCurrentCrop().getDiseaseChance() * getCompostUsed().getDiseaseReductionRate();
 	}
 }

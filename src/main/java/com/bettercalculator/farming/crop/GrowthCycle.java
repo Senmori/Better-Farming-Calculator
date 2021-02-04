@@ -1,7 +1,6 @@
 package com.bettercalculator.farming.crop;
 
 import com.bettercalculator.farming.GrowthTick;
-import lombok.Builder;
 import lombok.Value;
 
 /**
@@ -12,7 +11,6 @@ import lombok.Value;
  * The number of cycles needed for the {@link Crop} to be fully grown.
  */
 @Value
-@Builder
 public class GrowthCycle
 {
 	/** How long each growth cycle is. */

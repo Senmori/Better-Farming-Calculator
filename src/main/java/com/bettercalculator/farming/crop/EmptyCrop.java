@@ -40,7 +40,7 @@ public final class EmptyCrop implements Crop
 	}
 
 	@Override
-	public double getStandardDiseaseChance()
+	public double getDiseaseChance()
 	{
 		return 0.0D;
 	}
@@ -49,8 +49,7 @@ public final class EmptyCrop implements Crop
 	public boolean equals(Object obj)
 	{
 		if (obj == null) return false;
-		if (!(obj instanceof EmptyCrop)) return false;
-		EmptyCrop crop = (EmptyCrop) obj;
-		return crop.getClass() == EmptyCrop.class;
+		if (!(obj instanceof EmptyCrop)) return false;;
+		return true;
 	}
 }

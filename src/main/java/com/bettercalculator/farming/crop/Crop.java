@@ -34,9 +34,9 @@ public interface Crop
 	Collection<Harvest> getHarvest();
 
 	/**
-	 * @return the standard chance is crop will become diseased each growth cycle.
+	 * @return the chance this crop will become diseased each growth cycle. (Assuming no compost/external influence)
 	 */
-	double getStandardDiseaseChance();
+	double getDiseaseChance();
 
 	/**
 	 * Check if the crop is fully grown according to its {@link GrowthCycle}
