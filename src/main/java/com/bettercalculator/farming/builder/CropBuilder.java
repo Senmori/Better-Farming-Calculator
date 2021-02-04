@@ -109,7 +109,7 @@ public class CropBuilder
 		@Override
 		public CropExperienceBuilder growthCycle(GrowthTiming growthTiming, int numberofGrowthCycles)
 		{
-			this.growthCycle = GrowthCycle.of(growthTiming.getLength(), numberofGrowthCycles);
+			this.growthCycle = growthTiming.toGrowthCycle(numberofGrowthCycles);
 			return this;
 		}
 

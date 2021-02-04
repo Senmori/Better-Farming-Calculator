@@ -24,6 +24,6 @@ public enum GrowthTiming
 
 	public GrowthCycle toGrowthCycle(int numberOfCycles)
 	{
-		return GrowthCycle.of(getLength(), numberOfCycles);
+		return GrowthCycle.of(this, numberOfCycles);
 	}
 }

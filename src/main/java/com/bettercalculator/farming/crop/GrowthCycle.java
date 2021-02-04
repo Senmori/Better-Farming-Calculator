@@ -1,6 +1,7 @@
 package com.bettercalculator.farming.crop;
 
 import com.bettercalculator.farming.GrowthTick;
+import com.bettercalculator.farming.util.GrowthTiming;
 import lombok.Value;
 
 /**
@@ -16,7 +17,7 @@ import lombok.Value;
 public class GrowthCycle
 {
 	/** How long each growth cycle is. */
-	int growthCycleLength;
+	GrowthTiming growthTiming;
 	/** The number of growth cycles until this crop is fully grown. */
 	int numberOfGrowthCycles;
 
@@ -29,7 +30,7 @@ public class GrowthCycle
 	 */
 	public int getGrowthTime()
 	{
-		return getGrowthCycleLength() * getNumberOfGrowthCycles();
+		return getGrowthTiming().getLength() * getNumberOfGrowthCycles();
 	}
 
 	/**
@@ -53,6 +54,6 @@ public class GrowthCycle
 	public int getGrowthStage(GrowthTick tick)
 	{
 		int timePassed = (int) tick.getTimeUnit().toMinutes(tick.getTimePassed());
-		return Math.min(1, timePassed / getGrowthCycleLength());
+		return Math.min(1, timePassed / getGrowthTiming().getLength());
 	}
 }
