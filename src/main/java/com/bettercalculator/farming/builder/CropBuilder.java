@@ -3,12 +3,13 @@ package com.bettercalculator.farming.builder;
 import com.bettercalculator.farming.crop.Crop;
 import com.bettercalculator.farming.crop.CropExperience;
 import com.bettercalculator.farming.crop.CropType;
+import com.bettercalculator.farming.crop.CropYield;
 import com.bettercalculator.farming.crop.FarmingCrop;
 import com.bettercalculator.farming.crop.GrowthCycle;
 import com.bettercalculator.farming.crop.Harvest;
 import com.bettercalculator.farming.crop.Seed;
-import com.bettercalculator.farming.util.GrowthTiming;
-import com.bettercalculator.farming.util.SeedType;
+import com.bettercalculator.farming.crop.GrowthTiming;
+import com.bettercalculator.farming.crop.SeedType;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
@@ -60,6 +61,8 @@ public class CropBuilder
 		BuildStep cropExperience(int plantingExperience, int harvestExperience);
 
 		BuildStep cropExperience(int plantingExperience, int harvestExperience, int defaultYield);
+
+		BuildStep cropExperience(int plantingExperience, int harvestExperience, CropYield cropYield);
 	}
 
 	public interface BuildStep {
@@ -127,7 +130,7 @@ public class CropBuilder
 				.plantingExperience(plantingExperience)
 				.harvestExperience(harvestExperience)
 				.build();
-			return this;
+			return cropExperience(cropExperience);
 		}
 
 		@Override
@@ -138,7 +141,18 @@ public class CropBuilder
 				.harvestExperience(harvestExperience)
 				.defaultYield(defaultYield)
 				.build();
-			return this;
+			return cropExperience(cropExperience);
+		}
+
+		@Override
+		public BuildStep cropExperience(int plantingExperience, int harvestExperience, CropYield cropYield)
+		{
+			this.cropExperience = CropExperience.builder()
+				.plantingExperience(plantingExperience)
+				.harvestExperience(harvestExperience)
+				.defaultYield(cropYield.getAverageYield())
+				.build();
+			return cropExperience(plantingExperience, harvestExperience, cropYield.getAverageYield());
 		}
 
 		@Override

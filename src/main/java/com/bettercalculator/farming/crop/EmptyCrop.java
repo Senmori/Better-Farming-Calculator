@@ -16,21 +16,25 @@ public final class EmptyCrop implements Crop
 	}
 
 	@Override
-	public Seed getSeed()
+	public SeedType getSeedType()
 	{
-		return new Seed(-1, Integer.MAX_VALUE);
+		return SeedType.UNKNOWN;
 	}
 
 	@Override
 	public GrowthCycle getGrowthCycle()
 	{
-		return GrowthCycle.of(Integer.MAX_VALUE, 1);
+		return GrowthCycle.of(GrowthTiming.UNKNOWN, 1);
 	}
 
 	@Override
 	public CropExperience getCropExperience()
 	{
-		return new CropExperience(0, 0, 0);
+		return CropExperience.builder()
+			.plantingExperience(0.0D)
+			.harvestExperience(0.0D)
+			.checkHealthExperience(0.0D)
+			.build();
 	}
 
 	@Override
@@ -49,7 +53,6 @@ public final class EmptyCrop implements Crop
 	public boolean equals(Object obj)
 	{
 		if (obj == null) return false;
-		if (!(obj instanceof EmptyCrop)) return false;;
-		return true;
+		return obj instanceof EmptyCrop;
 	}
 }

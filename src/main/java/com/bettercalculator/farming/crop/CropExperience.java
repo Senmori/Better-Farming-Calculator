@@ -14,6 +14,8 @@ public class CropExperience
 	double plantingExperience;
 	/** The experience gained when harvesting this crop. This experience is per item harvested. */
 	double harvestExperience;
+	@Builder.Default
+	double checkHealthExperience = 0.0D;
 	/**
 	 * The default (lowest) number of items that can be harvested if this item has a variable yield.
 	 * If this crop has no variable yield, this is the number of items harvested.
@@ -30,7 +32,7 @@ public class CropExperience
 	 */
 	public double getExperience(int yield)
 	{
-		return getPlantingExperience() + (yield * getHarvestExperience());
+		return getPlantingExperience() + getCheckHealthExperience() + (yield * getHarvestExperience());
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.bettercalculator.farming.util;
+package com.bettercalculator.farming.crop;
 
 import lombok.Getter;
 import net.runelite.api.ItemID;
@@ -89,6 +89,8 @@ public enum SeedType
 	/* CACTI */
 	CACTUS(ItemID.CACTUS_SEED, 55),
 	POTATO_CACTUS(ItemID.POTATO_CACTUS_SEED, 64),
+
+	UNKNOWN(-1, Integer.MAX_VALUE);
 	;
 
 

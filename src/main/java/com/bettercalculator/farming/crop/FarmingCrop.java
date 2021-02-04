@@ -34,7 +34,7 @@ public class FarmingCrop implements Crop
 	}
 
 	@Override
-	public Seed getSeed()
+	public SeedType getSeedType()
 	{
 		return seed;
 	}

@@ -1,14 +1,13 @@
 package com.bettercalculator.farming.crop;
 
 import com.bettercalculator.farming.GrowthTick;
-import com.bettercalculator.farming.util.GrowthTiming;
 import lombok.Value;
 
 /**
  * Represents how long a {@link Crop} will take to grow.
  * This is separated into two parts.<br>
- * The growth cycle, which is how long until the crop "advances" a stage in it's growth.
- * and <br>
+ * The growth cycle, which is how long until the crop "advances" a stage in it's growth
+ * and
  * The number of cycles needed for the {@link Crop} to be fully grown.
  */
 @Value(
@@ -49,7 +48,7 @@ public class GrowthCycle
 	 * Get the current growth stage given the {@link GrowthTick}.
 	 *
 	 * @param tick the {@link GrowthTick} the crop is currently on
-	 * @return the current growth stage for the given {@link GrowthTick)} since the crop was planted
+	 * @return the current growth stage for the given {@link GrowthTick} since the crop was planted
 	 */
 	public int getGrowthStage(GrowthTick tick)
 	{

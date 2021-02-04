@@ -16,7 +16,7 @@ public interface Crop
 	/**
 	 * @return the {@link Seed} required to plant this crop.
 	 */
-	Seed getSeed();
+	SeedType getSeedType();
 
 	/**
 	 * @return the {@link GrowthCycle} of this crop.

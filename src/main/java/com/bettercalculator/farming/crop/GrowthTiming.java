@@ -1,6 +1,5 @@
-package com.bettercalculator.farming.util;
+package com.bettercalculator.farming.crop;
 
-import com.bettercalculator.farming.crop.GrowthCycle;
 import lombok.Getter;
 
 @Getter
@@ -14,6 +13,7 @@ public enum GrowthTiming
 	_160_MINUTES(160),
 	_320_MINUTES(320),
 	_640_MINUTES(640),
+	UNKNOWN(Integer.MAX_VALUE),
 	;
 
 	private final int length;
