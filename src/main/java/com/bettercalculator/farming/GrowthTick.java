@@ -1,5 +1,6 @@
 package com.bettercalculator.farming;
 
+import com.bettercalculator.TimedTick;
 import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 
@@ -7,7 +8,7 @@ import lombok.Getter;
  * Represents a single growth tick for a farming patch.
  */
 @Getter
-public class GrowthTick
+public class GrowthTick implements TimedTick
 {
 	/** The amount of time that has passed (in minutes). */
 	int timePassed;
