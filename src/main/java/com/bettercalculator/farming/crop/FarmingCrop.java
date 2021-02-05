@@ -11,7 +11,7 @@ import lombok.ToString;
 public class FarmingCrop implements Crop
 {
 	private final CropType cropType;
-	private final Seed seed;
+	private final SeedType seedType;
 	private final GrowthCycle growthCycle;
 	private final CropExperience cropExperience;
 	private final List<Harvest> harvestList = new ArrayList<>();
@@ -20,7 +20,7 @@ public class FarmingCrop implements Crop
 	public FarmingCrop(CropBuilder builder)
 	{
 		this.cropType = builder.getCropType();
-		this.seed = builder.getSeed();
+		this.seedType = builder.getSeed();
 		this.growthCycle = builder.getGrowthCycle();
 		this.cropExperience = builder.getCropExperience();
 		this.harvestList.addAll(builder.getHarvestList());
@@ -36,7 +36,7 @@ public class FarmingCrop implements Crop
 	@Override
 	public SeedType getSeedType()
 	{
-		return seed;
+		return seedType;
 	}
 
 	@Override

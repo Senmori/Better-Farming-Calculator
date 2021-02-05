@@ -6,7 +6,7 @@ import com.bettercalculator.farming.crop.CropType;
 import com.bettercalculator.farming.crop.EmptyCrop;
 import javax.annotation.Nonnull;
 
-public class AbstractPatch implements FarmingPatch
+public abstract class AbstractPatch implements FarmingPatch
 {
 	private final CropType cropType;
 	private Crop currentCrop = new EmptyCrop();

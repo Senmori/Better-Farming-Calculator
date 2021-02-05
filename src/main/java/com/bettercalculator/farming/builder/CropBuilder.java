@@ -7,7 +7,6 @@ import com.bettercalculator.farming.crop.CropYield;
 import com.bettercalculator.farming.crop.FarmingCrop;
 import com.bettercalculator.farming.crop.GrowthCycle;
 import com.bettercalculator.farming.crop.Harvest;
-import com.bettercalculator.farming.crop.Seed;
 import com.bettercalculator.farming.crop.GrowthTiming;
 import com.bettercalculator.farming.crop.SeedType;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import lombok.Getter;
 public class CropBuilder
 {
 	private final CropType cropType;
-	private final Seed seed;
+	private final SeedType seed;
 	private final GrowthCycle growthCycle;
 	private final CropExperience cropExperience;
 	private final List<Harvest> harvestList = new ArrayList<>();
@@ -27,7 +26,7 @@ public class CropBuilder
 	private CropBuilder(Builder builder)
 	{
 		this.cropType = builder.getCropType();
-		this.seed = builder.getSeed();
+		this.seed = builder.getSeedType();
 		this.growthCycle = builder.getGrowthCycle();
 		this.cropExperience = builder.getCropExperience();
 		this.harvestList.addAll(builder.getHarvestList());
@@ -44,9 +43,7 @@ public class CropBuilder
 	}
 
 	public interface SeedBuilder {
-		GrowthCycleBuilder seed(Seed seed);
-
-		GrowthCycleBuilder seed(SeedType seedType);
+		GrowthCycleBuilder seed(SeedType seed);
 	}
 
 	public interface GrowthCycleBuilder {
@@ -73,7 +70,7 @@ public class CropBuilder
 	public static class Builder implements CropTypeBuilder, SeedBuilder, GrowthCycleBuilder, CropExperienceBuilder, BuildStep
 	{
 		private CropType cropType;
-		private Seed seed;
+		private SeedType seedType;
 		private GrowthCycle growthCycle;
 		private CropExperience cropExperience;
 		private List<Harvest> harvestList = new ArrayList<>();
@@ -89,16 +86,9 @@ public class CropBuilder
 		}
 
 		@Override
-		public GrowthCycleBuilder seed(Seed seed)
+		public GrowthCycleBuilder seed(SeedType seed)
 		{
-			this.seed = seed;
-			return this;
-		}
-
-		@Override
-		public GrowthCycleBuilder seed(SeedType seedType)
-		{
-			this.seed = new Seed(seedType.getItemID(), seedType.getRequiredFarmingLevel());
+			this.seedType = seed;
 			return this;
 		}
 
