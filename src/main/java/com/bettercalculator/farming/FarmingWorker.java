@@ -1,6 +1,5 @@
 package com.bettercalculator.farming;
 
-public class FarmingCalculator
+public class FarmingWorker
 {
-
 }

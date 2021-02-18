@@ -1,5 +1,8 @@
-package com.bettercalculator.ui;
+package com.bettercalculator.ui.panel;
 
+import com.bettercalculator.ui.RootPluginPanel;
+import com.bettercalculator.ui.util.InputType;
+import com.bettercalculator.ui.util.IntegerTextField;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -13,6 +16,8 @@ import net.runelite.client.ui.FontManager;
 
 public class InputPanel extends JPanel
 {
+	private final RootPluginPanel rootPanel;
+
 	private final IntegerTextField currentLevelField;
 	private final IntegerTextField currentExpField;
 	private final IntegerTextField targetLevelField;
@@ -23,9 +28,10 @@ public class InputPanel extends JPanel
 	@Getter
 	private int targetLevel, targetExp;
 
-	public InputPanel()
+	public InputPanel(RootPluginPanel rootPanel)
 	{
 		setLayout(new GridLayout(2, 2, 7, 7));
+		this.rootPanel = rootPanel;
 		currentLevelField = createTextField(InputType.LEVEL, "Current Level");
 		currentExpField = createTextField(InputType.EXPERIENCE, "Current Experience");
 		targetLevelField = createTextField(InputType.LEVEL, "Target Level");
@@ -93,6 +99,8 @@ public class InputPanel extends JPanel
 		currentExpField.setValue(currentExp);
 		targetLevelField.setValue(targetLevel);
 		targetExpField.setValue(targetExp);
+
+		rootPanel.update();
 	}
 
 

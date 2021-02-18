@@ -1,4 +1,4 @@
-package com.bettercalculator.ui;
+package com.bettercalculator.ui.util;
 
 public interface ToolTipProvider
 {
