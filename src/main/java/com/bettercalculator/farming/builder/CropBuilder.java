@@ -49,7 +49,7 @@ public class CropBuilder
 	public interface GrowthCycleBuilder {
 		CropExperienceBuilder growthCycle(GrowthCycle growthCycle);
 
-		CropExperienceBuilder growthCycle(GrowthTiming growthTiming, int numberofGrowthCycles);
+		CropExperienceBuilder growthCycle(GrowthTiming growthTiming, int numberGrowthCycles);
 	}
 
 	public interface CropExperienceBuilder {
@@ -100,9 +100,9 @@ public class CropBuilder
 		}
 
 		@Override
-		public CropExperienceBuilder growthCycle(GrowthTiming growthTiming, int numberofGrowthCycles)
+		public CropExperienceBuilder growthCycle(GrowthTiming growthTiming, int numberGrowthCycles)
 		{
-			this.growthCycle = growthTiming.toGrowthCycle(numberofGrowthCycles);
+			this.growthCycle = growthTiming.toGrowthCycle(numberGrowthCycles);
 			return this;
 		}
 
