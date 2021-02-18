@@ -14,7 +14,7 @@ public interface Crop
 	CropType getCropType();
 
 	/**
-	 * @return the {@link Seed} required to plant this crop.
+	 * @return the {@link SeedType} required to plant this crop.
 	 */
 	SeedType getSeedType();
 

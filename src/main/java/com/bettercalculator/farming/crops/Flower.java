@@ -12,7 +12,7 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 import lombok.Getter;
 
-public enum Flower
+public enum Flower implements CropProvider
 {
 	MARIGOLD(SeedType.MARIGOLD, 4, 8.5, 47, CropProtection.MARIGOLD, CropProtection.WHITE_LILY),
 	ROSEMARY(SeedType.ROSEMARY, 4, 12, 66.5, CropProtection.ROSEMARY, CropProtection.WHITE_LILY),
@@ -54,13 +54,9 @@ public enum Flower
 		this.protections = Sets.newHashSet(cropProtection);
 	}
 
+	@Override
 	public Crop getCrop()
 	{
-		return CropBuilder.builder()
-			.cropType(CropType.FLOWER)
-			.seed(seed)
-			.growthCycle(growthCycle)
-			.cropExperience(cropExperience)
-			.build();
+		return buildCrop(CropType.FLOWER, seed, growthCycle, cropExperience);
 	}
 }

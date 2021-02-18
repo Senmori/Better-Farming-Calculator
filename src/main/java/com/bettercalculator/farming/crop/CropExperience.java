@@ -14,10 +14,17 @@ public class CropExperience
 	double plantingExperience;
 	/** The experience gained when harvesting this crop. This experience is per item harvested. */
 	double harvestExperience;
+	/**
+	 * The experience gained when checking the health of this crop. This only applies to Trees.
+	 * @see CropType#TREE
+	 * @see CropType#FRUIT_TREE
+	 * @see CropType#HARDWOOD_TREE
+	 * @see CropType#SPECIAL_TREE
+	 */
 	@Builder.Default
 	double checkHealthExperience = 0.0D;
 	/**
-	 * The default (lowest) number of items that can be harvested if this item has a variable yield.
+	 * The average number of items that can be harvested if this item has a variable yield.
 	 * If this crop has no variable yield, this is the number of items harvested.
 	 */
 	@Builder.Default

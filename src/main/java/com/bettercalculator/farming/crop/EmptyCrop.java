@@ -34,6 +34,7 @@ public final class EmptyCrop implements Crop
 			.plantingExperience(0.0D)
 			.harvestExperience(0.0D)
 			.checkHealthExperience(0.0D)
+			.defaultYield(0)
 			.build();
 	}
 

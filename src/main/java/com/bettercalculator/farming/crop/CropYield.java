@@ -18,6 +18,7 @@ public enum CropYield
 	MUSHROOM(6),
 	CACTUS(3),
 	POTATO_CACTUS(6),
+	NONE(0),
 	;
 
 	private final int averageYield;

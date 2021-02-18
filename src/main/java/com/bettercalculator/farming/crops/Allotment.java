@@ -9,7 +9,7 @@ import com.bettercalculator.farming.crop.GrowthCycle;
 import com.bettercalculator.farming.crop.GrowthTiming;
 import com.bettercalculator.farming.crop.SeedType;
 
-public enum Allotment
+public enum Allotment implements CropProvider
 {
 	POTATO(SeedType.POTATO, 4, 8.0, 9.0),
 	ONION(SeedType.ONION, 4, 9.5, 10.5),
@@ -37,13 +37,9 @@ public enum Allotment
 		this.cropYield = CropYield.ALLOTMENT;
 	}
 
+	@Override
 	public Crop getCrop()
 	{
-		return CropBuilder.builder()
-			.cropType(CropType.ALLOTMENT)
-			.seed(seed)
-			.growthCycle(growthCycle)
-			.cropExperience(cropExperience)
-			.build();
+		return buildCrop(CropType.ALLOTMENT, seed, growthCycle, cropExperience);
 	}
 }
