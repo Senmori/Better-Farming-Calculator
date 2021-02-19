@@ -1,15 +1,21 @@
 package com.bettercalculator.farming.ui;
 
 import com.bettercalculator.ui.RootPluginPanel;
+import com.bettercalculator.ui.panel.CalculatePanel;
 import com.bettercalculator.ui.panel.CalculatorScreen;
 import java.awt.BorderLayout;
 import java.text.DecimalFormat;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class FarmingCalculatorScreen extends CalculatorScreen
 {
 	DecimalFormat formatter = new DecimalFormat("#,###");
+
+	private final CalculatePanel calculatePanel;
 	private final JLabel label;
 	public FarmingCalculatorScreen(RootPluginPanel rootPanel)
 	{
@@ -17,8 +23,11 @@ public class FarmingCalculatorScreen extends CalculatorScreen
 		setLayout(new BorderLayout());
 		setBorder(new EmptyBorder(5, 0, 0, 0));
 
+		calculatePanel = new CalculatePanel();
 		label = new JLabel();
 
+
+		add(calculatePanel, BorderLayout.NORTH);
 		add(label, BorderLayout.CENTER);
 	}
 
