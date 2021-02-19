@@ -106,8 +106,7 @@ public class InputPanel extends JPanel
 
 	private int getValueWithBounds(IntegerTextField field)
 	{
-		InputType type = field.getInputType();
-		return enforceBounds(type, field.getCurrentValue());
+		return enforceBounds(field.getInputType(), field.getCurrentValue());
 	}
 
 	private int enforceBounds(InputType inputType, int value)

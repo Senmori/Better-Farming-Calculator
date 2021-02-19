@@ -1,6 +1,7 @@
 package com.bettercalculator.farming.crop;
 
 import com.bettercalculator.farming.GrowthTick;
+import lombok.Getter;
 import lombok.Value;
 
 /**
@@ -13,6 +14,7 @@ import lombok.Value;
 @Value(
 	staticConstructor = "of"
 )
+@Getter
 public class GrowthCycle
 {
 	/** How long each growth cycle is. */

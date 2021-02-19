@@ -1,4 +1,4 @@
-package com.bettercalculator;
+package com.bettercalculator.farming;
 
 /**
  * Represents a game tick that happens after a specified amount of time.

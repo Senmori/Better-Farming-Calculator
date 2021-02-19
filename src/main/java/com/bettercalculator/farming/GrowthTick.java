@@ -1,6 +1,5 @@
 package com.bettercalculator.farming;
 
-import com.bettercalculator.TimedTick;
 import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 

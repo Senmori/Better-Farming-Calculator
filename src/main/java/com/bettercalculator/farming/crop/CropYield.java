@@ -2,6 +2,7 @@ package com.bettercalculator.farming.crop;
 
 import lombok.Getter;
 
+//TODO: Move this to config at some point
 @Getter
 public enum CropYield
 {
