@@ -3,20 +3,28 @@ package com.bettercalculator.farming.ui;
 import com.bettercalculator.ui.RootPluginPanel;
 import com.bettercalculator.ui.panel.CalculatePanel;
 import com.bettercalculator.ui.panel.CalculatorScreen;
+import com.bettercalculator.ui.util.ProgressBar;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.text.DecimalFormat;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 public class FarmingCalculatorScreen extends CalculatorScreen
 {
 	DecimalFormat formatter = new DecimalFormat("#,###");
+	private final Color START = Color.RED;
+	private final Color FINISH = Color.GREEN;
 
 	private final CalculatePanel calculatePanel;
-	private final JLabel label;
+	private final JLabel neededXP;
+	private final ProgressBar progress;
+	//TODO: Remove below this after testing
+	private final Timer progressTimer;
+	private int currentGainedXP = 0;
 	public FarmingCalculatorScreen(RootPluginPanel rootPanel)
 	{
 		super(rootPanel);
@@ -24,37 +32,54 @@ public class FarmingCalculatorScreen extends CalculatorScreen
 		setBorder(new EmptyBorder(5, 0, 0, 0));
 
 		calculatePanel = new CalculatePanel();
-		label = new JLabel();
+		JPanel container = new JPanel();
+		container.setLayout(new GridLayout(3, 1,0, 5));
+		neededXP = new JLabel("Test1");
+		progress = new ProgressBar(getRootPluginPanel().getInputPanel());
+		container.add(neededXP);
+		container.add(progress);
 
-
+		calculatePanel.add(container, BorderLayout.SOUTH);
 		add(calculatePanel, BorderLayout.NORTH);
-		add(label, BorderLayout.CENTER);
+
+		progressTimer = new Timer(50, e -> {
+			this.displayNeededXP(5000);
+		});
+		calculatePanel.getCalculateButton().addActionListener(e -> {
+			if (!progressTimer.isRunning())
+			{
+				progressTimer.start();
+			}
+		});
+		calculatePanel.getCancelButton().addActionListener(e -> {
+			if (progressTimer.isRunning())
+			{
+				progressTimer.stop();
+			}
+		});
 	}
 
 	@Override
 	public void onHide()
 	{
-		label.setVisible(false);
+		progressTimer.stop();
 	}
 
 	@Override
 	public void onDisplay()
 	{
-		displayNeededXP();
+		displayNeededXP(currentGainedXP);
 	}
 
 	@Override
 	public void update()
 	{
-		displayNeededXP();
+		displayNeededXP(currentGainedXP);
 	}
 
-	private void displayNeededXP()
+
+	private void displayNeededXP(int updatedXP)
 	{
-		int currentXP = getRootPluginPanel().getInputPanel().getCurrentExp();
-		int targetXP = getRootPluginPanel().getInputPanel().getTargetExp();
-		int diff = targetXP - currentXP;
-		label.setText("You need " + formatter.format(diff) + " XP.");
-		label.setVisible(true);
+		progress.updateExp(updatedXP);
 	}
 }

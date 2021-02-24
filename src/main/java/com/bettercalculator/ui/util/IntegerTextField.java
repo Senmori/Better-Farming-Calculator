@@ -105,8 +105,7 @@ public class IntegerTextField extends JFormattedTextField
 		try
 		{
 			int value = Integer.parseInt(text);
-			int num = enforceBounds(value);
-			setValue(num);
+			setValue(enforceBounds(value));
 		}
 		catch (NumberFormatException ignored)
 		{
