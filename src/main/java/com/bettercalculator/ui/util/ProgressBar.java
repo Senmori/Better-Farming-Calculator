@@ -40,13 +40,13 @@ public class ProgressBar extends JProgressBar
 		{
 			return;
 		}
-
-		double progressValue = (double) (currentExp * 100 / targetExp);
 		if (currentExp >= targetExp)
 		{
 			SwingUtilities.invokeLater(this::displayCompleteProgressBar);
 			return;
 		}
+
+		double progressValue = (double) (currentExp * 100 / targetExp);
 		SwingUtilities.invokeLater(() -> this.updateProgressBar(currentExp, (int) progressValue));
 	}
 

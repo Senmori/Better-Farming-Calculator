@@ -5,26 +5,17 @@ import com.bettercalculator.ui.panel.CalculatePanel;
 import com.bettercalculator.ui.panel.CalculatorScreen;
 import com.bettercalculator.ui.util.ProgressBar;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
-import java.text.DecimalFormat;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 public class FarmingCalculatorScreen extends CalculatorScreen
 {
-	DecimalFormat formatter = new DecimalFormat("#,###");
-	private final Color START = Color.RED;
-	private final Color FINISH = Color.GREEN;
-
 	private final CalculatePanel calculatePanel;
-	private final JLabel neededXP;
 	private final ProgressBar progress;
 	//TODO: Remove below this after testing
 	private final Timer progressTimer;
-	private int currentGainedXP = 0;
 	public FarmingCalculatorScreen(RootPluginPanel rootPanel)
 	{
 		super(rootPanel);
@@ -34,17 +25,13 @@ public class FarmingCalculatorScreen extends CalculatorScreen
 		calculatePanel = new CalculatePanel();
 		JPanel container = new JPanel();
 		container.setLayout(new GridLayout(3, 1,0, 5));
-		neededXP = new JLabel("Test1");
 		progress = new ProgressBar(getRootPluginPanel().getInputPanel());
-		container.add(neededXP);
 		container.add(progress);
 
 		calculatePanel.add(container, BorderLayout.SOUTH);
 		add(calculatePanel, BorderLayout.NORTH);
 
-		progressTimer = new Timer(50, e -> {
-			this.displayNeededXP(5000);
-		});
+		progressTimer = new Timer(50, e -> this.displayNeededXP(5000));
 		calculatePanel.getCalculateButton().addActionListener(e -> {
 			if (!progressTimer.isRunning())
 			{
@@ -68,13 +55,16 @@ public class FarmingCalculatorScreen extends CalculatorScreen
 	@Override
 	public void onDisplay()
 	{
-		displayNeededXP(currentGainedXP);
+		if (!progressTimer.isRunning())
+		{
+			progressTimer.start();
+		}
 	}
 
 	@Override
 	public void update()
 	{
-		displayNeededXP(currentGainedXP);
+
 	}
 
 
