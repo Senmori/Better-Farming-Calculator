@@ -19,7 +19,7 @@ public class ProgressBar extends JProgressBar
 	private Color finishColor = Color.GREEN;
 
 
-	private InputPanel inputPanel;
+	private final InputPanel inputPanel;
 	private int gainedExp = 0;
 
 	public ProgressBar(InputPanel inputPanel)
