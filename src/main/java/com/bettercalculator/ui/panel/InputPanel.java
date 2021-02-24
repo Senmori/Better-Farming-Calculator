@@ -1,8 +1,8 @@
 package com.bettercalculator.ui.panel;
 
 import com.bettercalculator.ui.RootPluginPanel;
-import com.bettercalculator.ui.util.InputType;
-import com.bettercalculator.ui.util.IntegerTextField;
+import com.bettercalculator.ui.component.InputType;
+import com.bettercalculator.ui.component.IntegerTextField;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;

@@ -1,4 +1,4 @@
-package com.bettercalculator.ui.util;
+package com.bettercalculator.ui.component;
 
 import java.util.function.Supplier;
 

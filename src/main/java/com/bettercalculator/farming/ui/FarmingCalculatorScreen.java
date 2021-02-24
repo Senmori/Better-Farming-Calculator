@@ -3,7 +3,7 @@ package com.bettercalculator.farming.ui;
 import com.bettercalculator.ui.RootPluginPanel;
 import com.bettercalculator.ui.panel.CalculatePanel;
 import com.bettercalculator.ui.panel.CalculatorScreen;
-import com.bettercalculator.ui.util.ProgressBar;
+import com.bettercalculator.ui.component.ProgressBar;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JPanel;

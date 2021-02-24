@@ -1,4 +1,4 @@
-package com.bettercalculator.ui.util;
+package com.bettercalculator.ui.component;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;

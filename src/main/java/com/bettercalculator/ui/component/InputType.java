@@ -1,4 +1,4 @@
-package com.bettercalculator.ui.util;
+package com.bettercalculator.ui.component;
 
 import java.util.Locale;
 import java.util.function.UnaryOperator;

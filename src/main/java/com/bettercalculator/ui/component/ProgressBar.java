@@ -1,4 +1,4 @@
-package com.bettercalculator.ui.util;
+package com.bettercalculator.ui.component;
 
 import com.bettercalculator.ui.panel.InputPanel;
 import java.awt.Color;
