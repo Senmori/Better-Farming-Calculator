@@ -2,11 +2,13 @@ package com.bettercalculator.ui.component;
 
 import com.bettercalculator.ui.panel.InputPanel;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.text.DecimalFormat;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.client.ui.PluginPanel;
 
 public class ProgressBar extends JProgressBar
 {
@@ -20,34 +22,54 @@ public class ProgressBar extends JProgressBar
 
 
 	private final InputPanel inputPanel;
-	private int gainedExp = 0;
+	private double gainedExp = 0;
+	private boolean complete;
 
 	public ProgressBar(InputPanel inputPanel)
 	{
 		super();
 		setStringPainted(true);
 		this.inputPanel = inputPanel;
+		setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, 25));
 	}
 
-	public void updateExp(int gainedExp)
+	public void reset()
 	{
+		this.gainedExp = 0.0D;
+		updateProgressBar(0, 0);
+		complete = false;
+	}
+
+	public boolean isComplete()
+	{
+		return complete;
+	}
+
+	public boolean updateExp(double gainedExp)
+	{
+		if (isComplete())
+		{
+			return false;
+		}
 		int startExp = inputPanel.getCurrentExp();
 		int targetExp = inputPanel.getTargetExp();
 		this.gainedExp += gainedExp;
-		int currentExp = startExp + this.gainedExp;
+		double currentExp = startExp + this.gainedExp;
 
 		if (targetExp <= 0)
 		{
-			return;
+			return false;
 		}
 		if (currentExp >= targetExp)
 		{
 			SwingUtilities.invokeLater(this::displayCompleteProgressBar);
-			return;
+			complete = true;
+			return true;
 		}
 
 		double progressValue = (double) (currentExp * 100 / targetExp);
-		SwingUtilities.invokeLater(() -> this.updateProgressBar(currentExp, (int) progressValue));
+		SwingUtilities.invokeLater(() -> this.updateProgressBar( (int) currentExp, (int) progressValue));
+		return true;
 	}
 
 	private void updateProgressBar(int currentExp, int progress)

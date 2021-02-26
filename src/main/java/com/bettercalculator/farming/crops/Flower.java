@@ -1,6 +1,5 @@
 package com.bettercalculator.farming.crops;
 
-import com.bettercalculator.farming.builder.CropBuilder;
 import com.bettercalculator.farming.crop.Crop;
 import com.bettercalculator.farming.crop.CropExperience;
 import com.bettercalculator.farming.crop.CropType;

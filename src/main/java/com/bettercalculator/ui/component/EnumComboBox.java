@@ -2,6 +2,10 @@ package com.bettercalculator.ui.component;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.util.Comparator;
+import java.util.stream.Stream;
 import javax.swing.JComboBox;
 
 public class EnumComboBox<T extends Enum<T>> extends JComboBox<Enum<T>>
@@ -9,14 +13,17 @@ public class EnumComboBox<T extends Enum<T>> extends JComboBox<Enum<T>>
 
 	public EnumComboBox(Class<T> enumClass)
 	{
-		super(enumClass.getEnumConstants());
+		this(enumClass.getEnumConstants());
+	}
+
+	public EnumComboBox(T[] options)
+	{
+		super(options);
 		setRenderer(new DropdownRenderer());
-		setPreferredSize(new Dimension(super.getPreferredSize().width, 25));
 		setForeground(Color.WHITE);
 		setFocusable(false);
 		setEditable(false);
 	}
-
 
 	@Override
 	public T getSelectedItem()
