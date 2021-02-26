@@ -11,10 +11,23 @@ public class CheckBox extends JPanel
 	private final JCheckBox checkBox;
 	public CheckBox(String title)
 	{
+		this(title, false);
+	}
+
+	public CheckBox(String title, boolean rightToLeft)
+	{
 		JLabel label = new JLabel(title);
 		checkBox = new JCheckBox();
-		add(label);
-		add(checkBox);
+		if (rightToLeft)
+		{
+			add(checkBox);
+			add(label);
+		}
+		else
+		{
+			add(label);
+			add(checkBox);
+		}
 	}
 
 	public boolean isSelected()
