@@ -14,7 +14,7 @@ import net.runelite.client.ui.PluginPanel;
 
 public class ProgressBar extends JPanel
 {
-	private final DecimalFormat formatter = new DecimalFormat("#,###");
+	private static final DecimalFormat formatter = new DecimalFormat("#,###");
 	@Setter
 	@Getter
 	private Color startColor = Color.RED;
@@ -73,7 +73,7 @@ public class ProgressBar extends JPanel
 			return true;
 		}
 
-		double progressValue = (double) (currentExp * 100 / targetExp);
+		double progressValue = currentExp * 100 / targetExp;
 		SwingUtilities.invokeLater(() -> this.updateProgressBar( (int) currentExp, (int) progressValue));
 		return true;
 	}
