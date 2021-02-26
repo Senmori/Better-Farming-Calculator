@@ -21,6 +21,7 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.SkillIconManager;
+import net.runelite.client.game.SpriteManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
@@ -58,6 +59,10 @@ public class BetterCalculator extends Plugin
 	@Getter
 	@Inject
 	private SkillIconManager skillIconManager;
+
+	@Getter
+	@Inject
+	private SpriteManager spriteManager;
 
 	@Getter
 	@Inject
