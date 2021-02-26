@@ -50,13 +50,13 @@ public class TabSelector extends JTabbedPane
 	}
 
 
-	public void addSelection(Skill skill, CalculatorScreen screen)
+	public void addTab(Skill skill, CalculatorScreen screen)
 	{
 		BufferedImage img = plugin.getSkillIconManager().getSkillImage(skill, true);
 		addTab(img, skill.getName(), screen);
 	}
 
-	public void addSelection(int spriteID, String title, CalculatorScreen screen)
+	public void addTab(int spriteID, String title, CalculatorScreen screen)
 	{
 		BufferedImage img = plugin.getSpriteManager().getSprite(spriteID, 0);
 		if (img == null)

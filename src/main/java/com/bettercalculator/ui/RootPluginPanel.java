@@ -41,7 +41,7 @@ public class RootPluginPanel extends PluginPanel
 
 	public <T extends CalculatorScreen> T registerScreen(Skill skill, T screen)
 	{
-		tabSelector.addSelection(skill, screen);
+		tabSelector.addTab(skill, screen);
 		revalidate();
 		repaint();
 		return screen;
