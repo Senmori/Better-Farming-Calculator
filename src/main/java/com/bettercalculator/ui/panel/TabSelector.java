@@ -53,11 +53,25 @@ public class TabSelector extends JTabbedPane
 	public void addSelection(Skill skill, CalculatorScreen screen)
 	{
 		BufferedImage img = plugin.getSkillIconManager().getSkillImage(skill, true);
-		String skillName = skill.getName();
+		addTab(img, skill.getName(), screen);
+	}
+
+	public void addSelection(int spriteID, String title, CalculatorScreen screen)
+	{
+		BufferedImage img = plugin.getSpriteManager().getSprite(spriteID, 0);
+		if (img == null)
+		{
+			throw new IllegalArgumentException("Invalid Sprite ID " + spriteID);
+		}
+		addTab(img, title, screen);
+	}
+
+	private void addTab(BufferedImage img, String title, CalculatorScreen screen)
+	{
 		ImageIcon icon = new ImageIcon(img);
 		JScrollPane scrollPane = new JScrollPane(screen);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		addTab(skillName, icon, scrollPane);
+		addTab(title, icon, scrollPane);
 	}
 }
