@@ -1,10 +1,8 @@
 package com.bettercalculator.ui.component;
 
-import java.util.Locale;
-import java.util.function.UnaryOperator;
 import lombok.Getter;
 import net.runelite.api.Experience;
-import org.apache.commons.text.WordUtils;
+import net.runelite.client.util.Text;
 
 @Getter
 public enum InputType implements ToolTipProvider
@@ -26,6 +24,6 @@ public enum InputType implements ToolTipProvider
 	@Override
 	public String getTooltip()
 	{
-		return WordUtils.capitalize(name().toLowerCase(Locale.ROOT));
+		return Text.titleCase(this);
 	}
 }
