@@ -23,21 +23,19 @@ public class CalculatePanel extends JPanel
 		setBorder(new EmptyBorder(3, 0, 0, 0));
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
 
-		calculateButton = new JButton();
+		calculateButton = new JButton("Calculate");
 		calculateButton.setFont(FontManager.getRunescapeFont());
 		calculateButton.setForeground(Color.GREEN);
 		calculateButton.setOpaque(false);
-		calculateButton.setText("Calculate");
+		calculateButton.addActionListener(e -> onClickCalculate());
 		add(calculateButton);
 
-		cancelButton = new JButton();
+		cancelButton = new JButton("Cancel");
 		cancelButton.setFont(FontManager.getRunescapeFont());
 		cancelButton.setForeground(Color.WHITE);
 		cancelButton.setOpaque(false);
-		cancelButton.setText("Cancel");
 		cancelButton.setEnabled(false);
 		cancelButton.addActionListener(e -> onClickCancel());
-		calculateButton.addActionListener(e -> onClickCalculate());
 		add(cancelButton);
 	}
 
