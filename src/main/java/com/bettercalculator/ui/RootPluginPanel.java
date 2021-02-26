@@ -26,7 +26,7 @@ public class RootPluginPanel extends PluginPanel
 		super(false);
 		this.plugin = plugin;
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BorderLayout());
 		this.tabSelector = new TabSelector(plugin);
 		inputPanel = new InputPanel(this);
 

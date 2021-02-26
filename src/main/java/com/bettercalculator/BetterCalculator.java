@@ -73,14 +73,12 @@ public class BetterCalculator extends Plugin
 	private NavigationButton navButton;
 
 	private FarmingCalculatorScreen farmingScreen;
-	private HerbloreCalculatorScreen herbloreScreen;
 
 	@Override
 	protected void startUp()
 	{
 		rootPluginPanel = new RootPluginPanel(this);
 		farmingScreen = rootPluginPanel.registerScreen(Skill.FARMING, new FarmingCalculatorScreen(rootPluginPanel));
-		herbloreScreen = rootPluginPanel.registerScreen(Skill.HERBLORE, new HerbloreCalculatorScreen(rootPluginPanel));
 
 		BufferedImage icon = Icon.PANEL_ICON.getImage();
 
