@@ -41,6 +41,14 @@ public class TabSelector extends JTabbedPane
 		});
 	}
 
+	public void update(BetterCalculator plugin)
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.update(plugin);
+		}
+	}
+
 
 	public void addSelection(Skill skill, CalculatorScreen screen)
 	{

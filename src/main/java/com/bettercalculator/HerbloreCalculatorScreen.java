@@ -33,7 +33,7 @@ public class HerbloreCalculatorScreen extends CalculatorScreen
 	}
 
 	@Override
-	public void update()
+	public void update(BetterCalculator plugin)
 	{
 		label.setText(getClass().getSimpleName() + " ON UPDATE ");
 	}

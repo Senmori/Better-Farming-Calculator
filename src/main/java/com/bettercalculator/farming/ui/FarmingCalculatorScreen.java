@@ -1,5 +1,6 @@
 package com.bettercalculator.farming.ui;
 
+import com.bettercalculator.BetterCalculator;
 import com.bettercalculator.farming.crop.CropType;
 import com.bettercalculator.farming.crops.FruitTree;
 import com.bettercalculator.ui.RootPluginPanel;
@@ -86,7 +87,7 @@ public class FarmingCalculatorScreen extends CalculatorScreen
 	}
 
 	@Override
-	public void update()
+	public void update(BetterCalculator plugin)
 	{
 
 	}

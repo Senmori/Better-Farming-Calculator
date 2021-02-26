@@ -5,6 +5,7 @@ import com.bettercalculator.ui.panel.CalculatorScreen;
 import com.bettercalculator.ui.panel.InputPanel;
 import com.bettercalculator.ui.panel.TabSelector;
 import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Skill;
@@ -25,7 +26,7 @@ public class RootPluginPanel extends PluginPanel
 		super(false);
 		this.plugin = plugin;
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
-		setLayout(new BorderLayout());
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.tabSelector = new TabSelector(plugin);
 		inputPanel = new InputPanel(this);
 
@@ -35,11 +36,7 @@ public class RootPluginPanel extends PluginPanel
 
 	public void update()
 	{
-		CalculatorScreen currentScreen = tabSelector.getCurrentScreen();
-		if (currentScreen != null)
-		{
-			currentScreen.update();
-		}
+		tabSelector.update(plugin);
 	}
 
 	public <T extends CalculatorScreen> T registerScreen(Skill skill, T screen)

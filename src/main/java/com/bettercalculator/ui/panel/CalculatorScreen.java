@@ -1,5 +1,6 @@
 package com.bettercalculator.ui.panel;
 
+import com.bettercalculator.BetterCalculator;
 import com.bettercalculator.ui.RootPluginPanel;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,5 +19,5 @@ public abstract class CalculatorScreen extends FixedWidthPanel
 
 	public abstract void onDisplay();
 
-	public abstract void update();
+	public abstract void update(BetterCalculator plugin);
 }
