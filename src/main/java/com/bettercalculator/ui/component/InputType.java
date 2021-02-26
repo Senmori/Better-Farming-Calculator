@@ -6,31 +6,21 @@ import lombok.Getter;
 import net.runelite.api.Experience;
 import org.apache.commons.text.WordUtils;
 
-public enum InputType implements UnaryOperator<Integer>, ToolTipProvider
+@Getter
+public enum InputType implements ToolTipProvider
 {
-	LEVEL(Experience::getLevelForXp, 3, 1, Experience.MAX_VIRT_LEVEL),
-	EXPERIENCE(num -> num, 9, 0, Experience.MAX_SKILL_XP),
+	LEVEL(String.valueOf(Experience.MAX_VIRT_LEVEL).length(), 1, Experience.MAX_VIRT_LEVEL),
+	EXPERIENCE(String.valueOf(Experience.MAX_SKILL_XP).length(), 0, Experience.MAX_SKILL_XP),
 	;
 
-	private final UnaryOperator<Integer> operator;
-	@Getter
 	private final int maxDigits;
-	@Getter
 	private final int maxValue;
-	@Getter
 	private final int minValue;
-	InputType(UnaryOperator<Integer> operator, int maxDigits, int minValue, int maxValue)
+	InputType(int maxDigits, int minValue, int maxValue)
 	{
-		this.operator = operator;
 		this.maxDigits = maxDigits;
 		this.maxValue = maxValue;
 		this.minValue = minValue;
-	}
-
-	@Override
-	public Integer apply(Integer num)
-	{
-		return operator.apply(num);
 	}
 
 	@Override
