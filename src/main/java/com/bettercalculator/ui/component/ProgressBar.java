@@ -4,13 +4,15 @@ import com.bettercalculator.ui.panel.InputPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.text.DecimalFormat;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.client.ui.PluginPanel;
 
-public class ProgressBar extends JProgressBar
+public class ProgressBar extends JPanel
 {
 	private final DecimalFormat formatter = new DecimalFormat("#,###");
 	@Setter
@@ -20,7 +22,7 @@ public class ProgressBar extends JProgressBar
 	@Getter
 	private Color finishColor = Color.GREEN;
 
-
+	private final JProgressBar progressBar;
 	private final InputPanel inputPanel;
 	private double gainedExp = 0;
 	private boolean complete;
@@ -28,9 +30,13 @@ public class ProgressBar extends JProgressBar
 	public ProgressBar(InputPanel inputPanel)
 	{
 		super();
-		setStringPainted(true);
+		setBorder(new EmptyBorder(2, 0, 2, 0));
+		progressBar = new JProgressBar();
+		progressBar.setStringPainted(true);
+		progressBar.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH - 3, 23));
 		this.inputPanel = inputPanel;
-		setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, 25));
+
+		add(progressBar);
 	}
 
 	public void reset()
@@ -74,32 +80,32 @@ public class ProgressBar extends JProgressBar
 
 	private void updateProgressBar(int currentExp, int progress)
 	{
-		setString(formatter.format(currentExp) + " / " + formatter.format(inputPanel.getTargetExp()));
-		setValue(progress);
+		progressBar.setString(formatter.format(currentExp) + " / " + formatter.format(inputPanel.getTargetExp()));
+		progressBar.setValue(progress);
 		updateTooltip();
 		adjustForegroundColor();
 	}
 
 	private void displayCompleteProgressBar()
 	{
-		setValue(100);
-		setString("Complete!");
-		setForeground(getFinishColor());
+		progressBar.setValue(100);
+		progressBar.setString("Complete!");
+		progressBar.setForeground(getFinishColor());
 		updateTooltip();
 	}
 
 	private void updateTooltip()
 	{
-		setToolTipText(((int)(getPercentComplete() * 100)) + "%");
+		progressBar.setToolTipText(((int)(progressBar.getPercentComplete() * 100)) + "%");
 	}
 
 	private void adjustForegroundColor()
 	{
-		double ratio = getPercentComplete();
+		double ratio = progressBar.getPercentComplete();
 		int red = interpolate(ratio, getFinishColor().getRed(), getStartColor().getRed());
 		int green = interpolate(ratio, getFinishColor().getGreen(), getStartColor().getGreen());
 		int blue = interpolate(ratio, getFinishColor().getBlue(), getStartColor().getBlue());
-		setForeground(new Color(red, green, blue).brighter());
+		progressBar.setForeground(new Color(red, green, blue).brighter());
 	}
 
 	private int interpolate(double ratio, int finish, int start)
