@@ -6,13 +6,12 @@ import com.bettercalculator.farming.crops.CropProvider;
 import com.bettercalculator.ui.component.CheckBox;
 import com.bettercalculator.ui.component.EnumComboBox;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.util.function.Consumer;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import lombok.Getter;
 import net.runelite.client.util.Text;
 
+@Getter
 public class CropSectionUI<T extends Enum<T> & CropProvider> extends JPanel
 {
 	private final CropType cropType;
@@ -33,16 +32,6 @@ public class CropSectionUI<T extends Enum<T> & CropProvider> extends JPanel
 		add(label, BorderLayout.NORTH);
 		add(dropDownPanel, BorderLayout.WEST);
 		add(harvestCheckbox, BorderLayout.EAST);
-	}
-
-	public void addActionListener(Consumer<ActionEvent> consumer)
-	{
-		dropDownMenu.addActionListener(consumer::accept);
-	}
-
-	public CropType getSupportedCropType()
-	{
-		return cropType;
 	}
 
 	public T getSelectedItem()

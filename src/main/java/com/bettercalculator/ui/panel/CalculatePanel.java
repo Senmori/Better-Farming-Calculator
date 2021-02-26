@@ -19,19 +19,16 @@ public class CalculatePanel extends JPanel
 	public CalculatePanel()
 	{
 		super();
-		setLayout(new BorderLayout());
+		setLayout(new FlowLayout(FlowLayout.CENTER, 2, 2));
 		setBorder(new EmptyBorder(3, 0, 0, 0));
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
-
-		JPanel container = new JPanel();
-		container.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 		calculateButton = new JButton();
 		calculateButton.setFont(FontManager.getRunescapeFont());
 		calculateButton.setForeground(Color.GREEN);
 		calculateButton.setOpaque(false);
 		calculateButton.setText("Calculate");
-
+		add(calculateButton);
 
 		cancelButton = new JButton();
 		cancelButton.setFont(FontManager.getRunescapeFont());
@@ -41,11 +38,7 @@ public class CalculatePanel extends JPanel
 		cancelButton.setEnabled(false);
 		cancelButton.addActionListener(e -> onClickCancel());
 		calculateButton.addActionListener(e -> onClickCalculate());
-
-		container.add(calculateButton);
-		container.add(cancelButton);
-
-		add(container, BorderLayout.CENTER);
+		add(cancelButton);
 	}
 
 	private void onClickCancel()

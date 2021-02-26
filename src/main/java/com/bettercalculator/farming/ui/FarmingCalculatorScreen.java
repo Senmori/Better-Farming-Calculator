@@ -6,14 +6,9 @@ import com.bettercalculator.ui.RootPluginPanel;
 import com.bettercalculator.ui.panel.CalculatePanel;
 import com.bettercalculator.ui.panel.CalculatorScreen;
 import com.bettercalculator.ui.component.ProgressBar;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.Locale;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.BoxLayout;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
-import org.apache.commons.lang3.StringUtils;
 
 public class FarmingCalculatorScreen extends CalculatorScreen
 {
@@ -23,63 +18,56 @@ public class FarmingCalculatorScreen extends CalculatorScreen
 	private final Timer progressTimer;
 
 	private final CropSectionUI<FruitTree> treeSectionUI;
-	private final JLabel selectedLabel;
 	private int needed = 0;
 	public FarmingCalculatorScreen(RootPluginPanel rootPanel)
 	{
 		super(rootPanel);
-		setLayout(new BorderLayout());
-		setBorder(new EmptyBorder(5, 0, 0, 0));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setBorder(new EmptyBorder(5, 2, 2, 2));
 
 		calculatePanel = new CalculatePanel();
-		JPanel container = new JPanel();
-		container.setLayout(new GridLayout(3, 1,0, 5));
 		progress = new ProgressBar(getRootPluginPanel().getInputPanel());
-		container.add(progress);
-
-
-		calculatePanel.add(container, BorderLayout.SOUTH);
-		add(calculatePanel, BorderLayout.NORTH);
-
 		treeSectionUI = new CropSectionUI<>(CropType.FRUIT_TREE, FruitTree.class);
-		container.add(treeSectionUI);
-		selectedLabel = new JLabel("Crop: ");
-		container.add(selectedLabel);
-
-		treeSectionUI.addActionListener(e -> {
-			String name = StringUtils.capitalize(treeSectionUI.getSelectedItem().name().toLowerCase(Locale.ROOT));
-			selectedLabel.setText("Crop: " + name);
-		});
+		add(calculatePanel);
+		add(progress);
+		add(treeSectionUI);
 
 		progressTimer = new Timer(5, e -> {
 			if (progress.isComplete())
 			{
 				calculatePanel.getCancelButton().doClick(); // simulate clicking cancel button
+				return;
 			}
-			updateSelectedLabel(this.displayNeededXP(getSelectedCropXP()));
+			this.displayNeededXP(getSelectedCropXP());
 		});
-		calculatePanel.getCalculateButton().addActionListener(e -> {
-			if (!progressTimer.isRunning())
-			{
-				if (progress.isComplete())
-				{
-					progress.reset();
-					needed = 0;
-					progressTimer.restart();
-				}
-				else
-				{
-					progressTimer.start();
-				}
-			}
-		});
-		calculatePanel.getCancelButton().addActionListener(e -> {
-			if (progressTimer.isRunning())
-			{
-				progressTimer.stop();
-			}
-		});
+		calculatePanel.getCalculateButton().addActionListener(e -> this.startTimer());
+		calculatePanel.getCancelButton().addActionListener(e -> this.stopTimer());
 		revalidate();
+	}
+
+	private void startTimer()
+	{
+		if (!progressTimer.isRunning())
+		{
+			if (progress.isComplete())
+			{
+				progress.reset();
+				needed = 0;
+				progressTimer.restart();
+			}
+			else
+			{
+				progressTimer.start();
+			}
+		}
+	}
+
+	private void stopTimer()
+	{
+		if (progressTimer.isRunning())
+		{
+			progressTimer.stop();
+		}
 	}
 
 	@Override
@@ -103,27 +91,10 @@ public class FarmingCalculatorScreen extends CalculatorScreen
 
 	}
 
-	private void updateSelectedLabel(boolean success)
-	{
-		if (success) needed++;
-		StringBuilder text = new StringBuilder();
-		text.append(StringUtils.capitalize(treeSectionUI.getSelectedItem().name().toLowerCase(Locale.ROOT)));
-		if (progressTimer.isRunning() || progress.isComplete())
-		{
-			text.append(" -> ").append(getSelectedCropXP());
-		}
-		if (needed > 0)
-		{
-			text.append(" (Need: ").append(needed).append(")");
-		}
-		selectedLabel.setText(text.toString());
-	}
-
 	private double getSelectedCropXP()
 	{
 		return treeSectionUI.getExperience();
 	}
-
 
 	private boolean displayNeededXP(double updatedXP)
 	{
