@@ -78,7 +78,6 @@ public class BetterCalculator extends Plugin
 		herbloreScreen = rootPluginPanel.registerScreen(Skill.HERBLORE, new HerbloreCalculatorScreen(rootPluginPanel));
 
 		BufferedImage icon = Icon.PANEL_ICON.getImage();
-		//icon = ImageUtil.resizeImage(icon, 16, 16);
 
 		navButton = NavigationButton.builder()
 			.tooltip(PLUGIN_NAME)
@@ -88,13 +87,6 @@ public class BetterCalculator extends Plugin
 			.build();
 
 		clientToolbar.addNavigation(navButton);
-
-		Crop crop = CropBuilder.builder()
-			.cropType(CropType.TREE)
-			.seed(SeedType.YEW)
-			.growthCycle(GrowthTiming._80_MINUTES, 8)
-			.cropExperience(81, 7000)
-			.build();
 	}
 
 	@Override
